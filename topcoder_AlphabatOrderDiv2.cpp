@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-string f(vector<string> v){
+string AlphabetOrderDiv2(vector<string> v){
     vector< set<char> > parents(26);
     int n=v.size();
     for(int i=0;i<n;i++){
@@ -18,11 +18,11 @@ string f(vector<string> v){
     return "possible";
 }
 int main(){
-    cout<< " enter strings"<<"\n";
+    //cout<< " enter strings"<<"\n";
     string s;
     vector<string> v;
     while(cin>>s){
         v.push_back(s);
     }
-    cout<<f(v);
+    cout<<AlphabetOrderDiv2(v);
 }
