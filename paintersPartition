@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int sum(int arr[], int n){
+    int total = 0;
+    for(int i=0;i<n;i++)
+        total += arr[i];
+    return total;
+}
+
+int maxm(int arr[], int n){
+    int ans = INT_MIN;
+    for(int i=0;i<n;i++)
+        ans = max(ans,arr[i]);
+    return ans;
+}
+
+int paintersReq(int arr[], int n, int t){
+    int painters = 1;
+    int calc = 0;
+    for(int i=0;i<n;i++){
+        calc += arr[i];
+        if(calc > t) {calc = arr[i]; painters++;}
+    }
+    //cout<<"painters: "<<painters;
+    return painters;
+}
+
+int findBestTime(int arr[], int n, int k){
+    int high = sum(arr,n);
+    int low = maxm(arr,n);
+    int ans = 0;
+    //int mid = 0;
+    while(low <= high){
+        int mid = low +(high - low)/2;
+        if(paintersReq(arr,n,mid) > k) low = mid+1;
+        else{ans = mid; high = mid-1;}
+    }
+    return ans;
+}
+
+int main(){
+    int n,k;
+    cin>>n>>k;
+    int arr[n];
+    for(int i=0;i<n;i++) cin>>arr[i];
+    //for(int x:arr) cout<<x<<" ";
+    cout<<findBestTime(arr,n,k);
+    return 0;
+}
